@@ -1,5 +1,5 @@
-#r/dailyprogrammer Challenge #159 [Easy] Rock Paper Scissors Lizard Spock
-========================
+#r/dailyprogrammer Challenge #159 [Easy]
+
 ## What
 A solution to [r/dailyprogrammer's](http://www.reddit.com/r/dailyprogrammer/) challenge #159 [Easy] in JavaScript.
 
