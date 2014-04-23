@@ -23,7 +23,7 @@ function Game() {
 		},
 		spock: {
 			rock: 'vaporizes',
-			scisors: 'smashes'
+			scissors: 'smashes'
 		}
 	}
 }
