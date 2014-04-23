@@ -26,12 +26,14 @@ IntermediateAI.prototype.move = function() {
 	
 	/* Work out our potential moves */
 	var potential = [];
-	for (var move in popular) {
+	$.each(popular, function(k, popularMove) {
 		/* Add counters to the most popular enemy moves */
-		$.each(Object.keys(g.rules[popular[move]]), function(k, v) {
-			potential.push(v); 
+		$.each(g.rules, function(winningMove, v) {
+			$.each(v, function(losingMove, v) {
+				if (popularMove == losingMove) { potential.push(winningMove) }
+			});
 		});
-	}
+	});
 	/* Remove duplicates */
 	$.unique(potential);
 	/* Remove popular player moves */
@@ -39,8 +41,7 @@ IntermediateAI.prototype.move = function() {
 		if (potential.indexOf(v) > -1) { potential.splice(potential.indexOf(v), 1) }
 	});
 	
-	/* Now choose from this list! */
-	console.log(potential);
+	/* Now choose a move! */
 	if (potential.length === 0) {
 		/* All choices equally popular, choose randomly */
 		var random = Math.floor(Math.random() * 5);
