@@ -29,7 +29,12 @@ function Game() {
 }
 // 0 = draw, 1 = p1, 2 = p2
 Game.prototype.fight = function(moveOne, moveTwo) {
-	var result = { winner: 0, message: '' };
+	var result = { 
+		winner: 0,
+		p1: moveOne,
+		p2: moveTwo,
+		message: ''
+	};
 	// Draw
 	if (moveOne === moveTwo) {
 		result.message += 'Both players chose ' + moveOne + '. Tie!';

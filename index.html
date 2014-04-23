@@ -23,11 +23,11 @@
 			<div class="col-md-6">
 				<h4>Player 1</h4>
 				<div id="p1-buttons">
-					<button id="p1-rock" class="btn btn-primary">Rock</button>
-					<button id="p1-paper" class="btn btn-primary">Paper</button>
-					<button id="p1-scissors" class="btn btn-primary">Scissors</button>
-					<button id="p1-lizard" class="btn btn-primary">Lizard</button>
-					<button id="p1-spock" class="btn btn-primary">Spock</button>
+					<button id="rock" class="btn btn-primary">Rock</button>
+					<button id="paper" class="btn btn-primary">Paper</button>
+					<button id="scissors" class="btn btn-primary">Scissors</button>
+					<button id="lizard" class="btn btn-primary">Lizard</button>
+					<button id="spock" class="btn btn-primary">Spock</button>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -85,25 +85,18 @@
 		g = new Game();
 		ai = new EasyAI();
 		
-		$('button').click(function() {
+		$('#p1-buttons button').click(function() {
 			/* Play a game */
-			var move = this.id.split('-');
+			var playerMove = this.id;
 			var aiMove = ai.move();
-			var result = g.fight(move[1], aiMove);
+			var result = g.fight(playerMove, aiMove); // Player always goes first
 			
-			/* Display results in table */
-			var html = '<tr>';
-			if (result.winner == 1) {
-				html += '<td class="success">'+move[1]+'</td><td>'+aiMove+'</td>';
-			} else if (result.winner == 2) {
-				html += '<td>'+move[1]+'</td><td class="success">'+aiMove+'</td>';			
-			} else {
-				html += '<td class="warning">'+move[1]+'</td><td class="warning">'+aiMove+'</td>';
-			}
-			html += '</tr>';
-			$('#results').append(html);
+			/* Tell the AI the result */
+			ai.lastMatch(result); 
+			/* Tell the player the result */
+			displayResult(result);
 			
-			/* Display stats */
+			/* Display statistics */
 			displayStats();
 			
 			/* Log result to console */
@@ -129,7 +122,21 @@
 		});
 	});
 	
-	function displayStats(){
+	function displayResult(result) {
+		/* Display results in table */
+		var html = '<tr>';
+		if (result.winner == 1) {
+			html += '<td class="success">'+result.p1+'</td><td>'+result.p2+'</td>';
+		} else if (result.winner == 2) {
+			html += '<td>'+result.p1+'</td><td class="success">'+result.p2+'</td>';			
+		} else {
+			html += '<td class="warning">'+result.p1+'</td><td class="warning">'+result.p2+'</td>';
+		}
+		html += '</tr>';
+		$('#results').append(html);
+	}
+	
+	function displayStats() {
 		$('#games').text(g.games);
 		$('#p1-wins').text(g.p1Wins);
 		$('#p2-wins').text(g.p2Wins);
