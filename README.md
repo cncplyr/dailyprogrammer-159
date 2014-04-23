@@ -17,7 +17,7 @@ Create a basic game that takes a user input for a move, and pits the move agains
 ### Part 2 - Intermediate
 In addition to the original game, implement a basic AI and a basic game loop:
   * The user can continue playing until they decide to quit.
-  * Upon quitting the user is presented with a record of games played, player wins, ai wins, ties and associated percentages.
+  * Upon quitting the user is presented with a record of games played, player wins, ai wins, ties and associated percentages. (I display these in the sidebar).
   * The AI remembers the players previous moves, and picks it's next move based on the player's top picks and picking a counter. In the case of a tie, the computer will select randomly amongst counter moves, excluding moves it is attempting to counter.
   * Enable the user to select which AI to play against (random, learning)
 

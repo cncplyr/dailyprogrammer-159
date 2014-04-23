@@ -2,7 +2,10 @@ function EasyAI(){
 	AI.call(this);
 };
 EasyAI.prototype = new AI();
-EasyAI.prototype.constructor = AI;
+EasyAI.prototype.constructor = EasyAI;
+EasyAI.prototype.type = function() {
+	return 'Easy AI';
+}
 EasyAI.prototype.move = function() {
 	var random = Math.floor(Math.random() * 5);
 	switch (random) {

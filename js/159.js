@@ -52,6 +52,10 @@ Game.prototype.fight = function(moveOne, moveTwo) {
 }
 
 function AI() {}
+AI.prototype.type = function() {
+	return 'Base AI';
+}
 AI.prototype.move = function() {
 	return 'rock'; // The best move
 }
+AI.prototype.lastMatch = function(result) {}

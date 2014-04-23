@@ -9,9 +9,10 @@
 	<!-- Ours -->
 	<script src="js/159.js"></script>
 	<script src="js/159-easy.js"></script>
+	<script src="js/159-intermediate.js"></script>
 </head>
 <body>
-	<a href="https://github.com/cncplyr/dailyprogrammer-159-easy"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+	<a href="https://github.com/cncplyr/dailyprogrammer-159"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 
 	<div class="container">
 		<div class="page-header">
@@ -30,14 +31,11 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<h4>AI</h4>
-				<div id="p2-buttons" hidden="true">
-					<button id="p2-rock" class="btn btn-primary">Rock</button>
-					<button id="p2-paper" class="btn btn-primary">Paper</button>
-					<button id="p2-scissors" class="btn btn-primary">Scissors</button>
-					<button id="p2-lizard" class="btn btn-primary">Lizard</button>
-					<button id="p2-spock" class="btn btn-primary">Spock</button>
-				</div>
+				<h4>AI <small>Changing difficulty will reset your stats.</small></h4>
+				<select id="ai-difficulty" class="form-control">
+					<option value="easy">Easy</option>
+					<option value="intermediate">Intermediate</option>
+				</select>
 			</div>
 		</div>
 		
@@ -69,7 +67,12 @@
 		<hr>
 		
 		<div class="col-md-12">
-			<p>This is a solution for the <a href="http://www.reddit.com/r/dailyprogrammer/comments/23lfrf/4212014_challenge_159_easy_rock_paper_scissors/">r/dailyprogrammer challenge</a>
+			<p>This is a solution for challenge #159 on daily programmer:
+				<ul>
+					<li><a href="http://www.reddit.com/r/dailyprogrammer/comments/23lfrf/4212014_challenge_159_easy_rock_paper_scissors/">Easy</a></li>
+					<li><a href="http://www.reddit.com/r/dailyprogrammer/comments/23qy19/4232014_challenge_159_intermediate_rock_paper/">Intermediate</a></li>
+				</ul>
+			</p>
 		</div>
 	</div>
 	
@@ -101,15 +104,37 @@
 			$('#results').append(html);
 			
 			/* Display stats */
-			$('#games').text(g.games);
-			$('#p1-wins').text(g.p1Wins);
-			$('#p2-wins').text(g.p2Wins);
-			$('#ties').text(g.ties);
+			displayStats();
 			
 			/* Log result to console */
 			console.log(result.message);
 		});
+		
+		$('select#ai-difficulty').change(function() {
+			/* Create the relevant AI */
+			var difficulty = $('select#ai-difficulty').val();
+			switch (difficulty) {
+				case 'easy':
+					ai = new EasyAI();
+					break;
+				case 'intermediate':
+					ai = new IntermediateAI();
+					break;
+				default:
+					ai = new AI();
+			}
+			/* Reset the game */
+			g = new Game();
+			displayStats();
+		});
 	});
+	
+	function displayStats(){
+		$('#games').text(g.games);
+		$('#p1-wins').text(g.p1Wins);
+		$('#p2-wins').text(g.p2Wins);
+		$('#ties').text(g.ties);
+	}
 	
 	</script>
 </body>
