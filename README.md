@@ -8,6 +8,7 @@ Check it out [here](http://cncplyr.github.io/dailyprogrammer-159).
 See the full rules on the relevant dailyprogrammer posts:
   * [Part 1 - Easy](http://www.reddit.com/r/dailyprogrammer/comments/23lfrf/4212014_challenge_159_easy_rock_paper_scissors/)
   * [Part 2 - Intermediate](http://www.reddit.com/r/dailyprogrammer/comments/23qy19/4232014_challenge_159_intermediate_rock_paper/)
+  * [Part 3 - Hard](http://www.reddit.com/r/dailyprogrammer/comments/23yinj/4252014_challenge_159_hard_rock_paper_scissors/)
 
 The challenge is to create a basic implementation of Rock Paper Scissors Lizard Spock. The initial stage is a basic implementation of the game, and subsequent updates increased the difficulty.
 
@@ -21,5 +22,8 @@ In addition to the original game, implement a basic AI and a basic game loop:
   * The AI remembers the players previous moves, and picks it's next move based on the player's top picks and picking a counter. In the case of a tie, the computer will select randomly amongst counter moves, excluding moves it is attempting to counter.
   * Enable the user to select which AI to play against (random, learning)
 
+### Part 3 - Hard
+Now add a new AI, and a system to battle AIs. AI battles should last 10,000 games, then print out the results.
+  
 ## Links
   * [Wikipedia rules for Rock Paper Scissors Lizard Spock](http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock)
